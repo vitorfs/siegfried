@@ -1,5 +1,15 @@
 {% extends 'base.html' %}
 
+{% block javascript %}
+  <script type="text/javascript">
+    $(function () {
+      $(".js-confirm-delete").click(function () {
+        return confirm("Are you sure?");
+      });
+    });
+  </script>
+{% endblock %}
+
 {% block content %}
   <nav aria-label="breadcrumb" role="navigation">
     <ol class="breadcrumb">
@@ -18,7 +28,7 @@
           <a href="{% url 'import_excel' review.pk %}" class="btn btn-sm btn-primary" role="button">Import from excel</a>
           <form method="post" action="{% url 'delete_all_articles' review.pk %}" class="d-inline">
             {% csrf_token %}
-            <button type="submit" class="btn btn-sm btn-outline-danger" role="button">Remove all articles</button>
+            <button type="submit" class="btn btn-sm btn-outline-danger js-confirm-delete" role="button">Remove all articles</button>
           </form>
         </div>
         <div class="col-8">

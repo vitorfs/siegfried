@@ -6,7 +6,9 @@
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link{% if active == 'inclusion_criteria' %} active{% endif %}" href="#">Inclusion Criteria</a>
+    <a class="nav-link{% if active == 'criteria' %} active{% endif %}" href="{% url 'criterion_list' review.pk %}">
+      Criteria
+    </a>
   </li>
   <li class="nav-item">
     <a class="nav-link{% if active == 'screening' %} active{% endif %}" href="#">Screening</a>

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <nav aria-label="breadcrumb" role="navigation">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'review_list' %}">Reviews</a></li>
+      <li class="breadcrumb-item"><a href="{% url 'article_list' review.pk %}">{{ review.title }}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Criteria</li>
+    </ol>
+  </nav>
+  <h2 class="mb-4">Criteria</h2>
+  <div class="card mb-4">
+    <div class="card-header">
+      {% include 'reviews/includes/menu.html' with active='criteria' %}
+    </div>
+    <div class="card-body">
+      <a href="" class="btn btn-sm btn-primary" role="button">New criteria</a>
+    </div>
+    <table class="table table-striped mb-0">
+      <thead>
+        <tr>
+          <th>Criteria</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for criterion in criteria %}
+          <tr>
+            <td>{{ criterion.text }}</td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="3">
+              You haven't created any criteria yet. <a href="">Add criteria</a>.
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

@@ -41,8 +41,7 @@ class Article(models.Model):
     abstract = models.TextField(blank=True)
     authors = models.CharField(max_length=4000, blank=True)
     review = models.ForeignKey(Review, related_name='articles')
-    title_keywords = GenericRelation(Keyword)
-    abstract_keywords = GenericRelation(Keyword)
+    keywords = GenericRelation(Keyword, related_query_name='articles')
 
     class Meta:
         verbose_name = 'article'
@@ -53,19 +52,19 @@ class Article(models.Model):
         return self.title
 
 
-class Criteria(models.Model):
+class Criterion(models.Model):
     INCLUSION = 1
     EXCLUSION = 2
-    CRITERIA_TYPE_CHOICES = (
+    CRITERION_TYPE_CHOICES = (
         (INCLUSION, 'inclusion criteria'),
         (EXCLUSION, 'exclusion criteria'),
     )
 
-    review = models.ForeignKey(Review, related_name='criterion')
-    text = models.CharField(max_length=1000)
-    criteria_type = models.PositiveSmallIntegerField(choices=CRITERIA_TYPE_CHOICES, default=INCLUSION)
+    review = models.ForeignKey(Review, related_name='criteria')
+    text = models.TextField(max_length=1000)
+    criterion_type = models.PositiveSmallIntegerField(choices=CRITERION_TYPE_CHOICES, default=INCLUSION)
 
     class Meta:
-        verbose_name = 'criteria'
-        verbose_name_plural = 'criterion'
-        db_table = 'criterion'
+        verbose_name = 'criterion'
+        verbose_name_plural = 'criteria'
+        db_table = 'criteria'

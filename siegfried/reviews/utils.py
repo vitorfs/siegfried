@@ -1,7 +1,8 @@
 import string
 
+from nltk import word_tokenize
 from nltk.corpus import stopwords
-from nltk.stem.snowball import PorterStemmer
+from nltk.stem.porter import PorterStemmer
 
 
 def normalize(text):
@@ -19,6 +20,14 @@ def remove_stopwords(word_list):
 
 
 def stemming(word_list):
-    stemmer = PorterStemmer('english')
+    stemmer = PorterStemmer()
     stemmed = map(lambda word: stemmer.stem(word), word_list)
     return list(stemmed)
+
+
+def make_keywords(text):
+    normalized_text = normalize(text)
+    tokens = word_tokenize(normalized_text)
+    tokens_without_stopwords = remove_stopwords(tokens)
+    keywords = stemming(tokens_without_stopwords)
+    return keywords

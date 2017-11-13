@@ -24,14 +24,14 @@
     </div>
     <div class="card-body">
       <div class="row">
-        <div class="col-4">
+        <div class="col-6">
           <a href="{% url 'import_excel' review.pk %}" class="btn btn-sm btn-primary" role="button">Import from excel</a>
           <form method="post" action="{% url 'delete_all_articles' review.pk %}" class="d-inline">
             {% csrf_token %}
             <button type="submit" class="btn btn-sm btn-outline-danger js-confirm-delete" role="button">Remove all articles</button>
           </form>
         </div>
-        <div class="col-8">
+        <div class="col-6">
           <div class="float-right">
             {% include 'includes/pagination.html' %}
           </div>

@@ -5,13 +5,14 @@
 {% block content %}
   <div class="row justify-content-center">
     <div class="col-6">
-      <h2 class="mb-4">Create a review</h2>
+      <h2 class="mb-4">Create a criteria</h2>
       <div class="card mb-4">
         <div class="card-body">
           <form method="post" novalidate>
             {% csrf_token %}
             {{ form|crispy }}
-            <button type="submit" class="btn btn-success" role="button">Create review</button>
+            <button type="submit" class="btn btn-success" role="button">Create criteria</button>
+            <a href="{% url 'criteria_list' review.pk %}" class="btn btn-outline-secondary" role="button">Cancel</a>
           </form>
         </div>
       </div>

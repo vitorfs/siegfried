@@ -9,6 +9,7 @@ urlpatterns = [
         url(r'^$', views.ArticleListView.as_view(), name='article_list'),
         url(r'^clear/$', views.DeleteAllArticlesView.as_view(), name='delete_all_articles'),
         url(r'^import/$', views.ImportExcelView.as_view(), name='import_excel'),
-        url(r'^criteria/$', views.CriterionListView.as_view(), name='criterion_list'),
+        url(r'^criteria/$', views.CriteriaListView.as_view(), name='criteria_list'),
+        url(r'^criteria/new/$', views.CriteriaCreateView.as_view(), name='criteria_create'),
     ])),
 ]

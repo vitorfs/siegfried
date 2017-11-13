@@ -6,7 +6,7 @@ import xlrd
 
 from .forms import UploadArticlesForm
 from .mixins import ReviewMixin
-from .models import Article, Criterion, Review, Keyword
+from .models import Article, Criteria, Review, Keyword
 from .utils import make_keywords
 
 
@@ -58,6 +58,21 @@ class DeleteAllArticlesView(ReviewMixin, View):
         return redirect('article_list', self.review.pk)
 
 
-class CriterionListView(ReviewMixin, ListView):
-    model = Criterion
-    context_object_name = 'criteria'
+class CriteriaListView(ReviewMixin, ListView):
+    model = Criteria
+    context_object_name = 'criteria_list'
+
+    def get_queryset(self):
+        return self.review.criteria.all()
+
+
+class CriteriaCreateView(ReviewMixin, CreateView):
+    model = Criteria
+    fields = ('criteria_type', 'category', 'operator', 'text', )
+
+    def form_valid(self, form):
+        criteria = form.save(commit=False)
+        criteria.review = self.review
+        criteria.save()
+        return redirect('criteria_list', self.review.pk)
+

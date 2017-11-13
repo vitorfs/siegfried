@@ -1,0 +1,41 @@
+{% load static %}<!doctype html>
+<html lang="en">
+  <head>
+    <title>{% block title %}Siegfried{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap-4.0.0-beta.2/css/bootstrap.min.css' %}">
+    <style type="text/css">
+      table.table {
+        font-size: .8rem;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'review_list' %}">Siegfried</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainMenu">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'review_list' %}">Reviews <span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <a href="{% url 'review_create' %}" class="btn btn-primary my-2 my-sm-0" role="button">New review</a>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      {% block content %}
+      {% endblock %}
+    </div>
+    <script src="{% static 'vendor/jquery-3.2.1/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/popper.js-1.12.7/umd/popper.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap-4.0.0-beta.2/js/bootstrap.min.js' %}"></script>
+  </body>
+</html>

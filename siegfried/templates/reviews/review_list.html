@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block content %}
+  <nav aria-label="breadcrumb" role="navigation">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Reviews</li>
+    </ol>
+  </nav>
+  <h2 class="mb-4">Reviews</h2>
+  <div class="card">
+    <table class="table mb-0">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Created</th>
+          <th>Articles</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for review in reviews %}
+          <tr>
+            <td><a href="{{ review.get_absolute_url }}">{{ review.title }}</a></td>
+            <td>{{ review.created_at|naturaltime }}</td>
+            <td>{{ review.articles.count }}</td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="3">
+              You haven't created any review yet. <a href="{% url 'review_create' %}">Create your first review</a>.
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

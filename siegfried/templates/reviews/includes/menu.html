@@ -1,0 +1,14 @@
+<ul class="nav nav-tabs card-header-tabs">
+  <li class="nav-item">
+    <a class="nav-link{% if active == 'articles' %} active{% endif %}" href="{% url 'article_list' review.pk %}">
+      Articles
+      <span class="badge badge-pill badge-secondary">{{ review.articles.count }}</span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link{% if active == 'inclusion_criteria' %} active{% endif %}" href="#">Inclusion Criteria</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link{% if active == 'screening' %} active{% endif %}" href="#">Screening</a>
+  </li>
+</ul>

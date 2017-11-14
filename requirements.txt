@@ -1,9 +1,1 @@
-Django==1.11.7
-django-crispy-forms==1.7.0
-nltk==3.2.5
-xlrd==1.1.0
-
-py2app==0.14
-pyobjc==4.0
-pyobjc-core==4.0
-pywebview==1.8
+-r base.txt

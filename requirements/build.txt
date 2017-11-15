@@ -1,5 +1,6 @@
 -r base.txt
 
+Paste==2.0.3
 CherryPy==11.1.0
 py2app==0.14
 pyobjc==4.0

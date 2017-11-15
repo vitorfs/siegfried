@@ -22,7 +22,7 @@ class Review(models.Model):
 
 class Keyword(models.Model):
     text = models.CharField(max_length=255)
-    order = models.PositiveIntegerField(default=0)
+    order = models.PositiveIntegerField(default=0, db_index=True)
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey()
@@ -50,6 +50,27 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class StructuredAbstract(models.Model):
+    UNCATEGORIZED = 1
+    BACKGROUND = 2
+    OBJECTIVE = 3
+    METHOD = 4
+    RESULTS = 5
+    LIMITATIONS = 6
+    CONCLUSIONS = 7
+    ABSTRACT_SECTION_CHOICES = (
+        (BACKGROUND, 'background'),
+        (OBJECTIVE, 'objective'),
+        (METHOD, 'method'),
+        (RESULTS, 'results'),
+        (LIMITATIONS, 'limitations'),
+        (CONCLUSIONS, 'conclusions'),
+    )
+    article = models.ForeignKey(Article, related_name='abstract_sections')
+    text = models.TextField()
+    section = models.PositiveSmallIntegerField(choices=ABSTRACT_SECTION_CHOICES)
 
 
 class Criteria(models.Model):
